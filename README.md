@@ -1,9 +1,10 @@
 # PHP_INVOICE_GENERATOR
-dynamic invioce generator
+# Dynamic invioce generator
 
-###________INSTRUCTIONS____
+#________INSTRUCTIONS____
 
 ADD BOOTSTRAP FILES INCLUDING CSS & JS TO THE ASSEST FOLDER
 
 THE PREVIEW AFTER ADDING CSS & JS FILES
+
 
