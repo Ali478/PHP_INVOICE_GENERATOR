@@ -3,16 +3,28 @@ include "./../include/header.php";
 include "./../classes/productDB.php";
 include "./../classes/invoiceDB.php";
 
-
-
-
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script>
+    function run(str) {
+
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("demo").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("get", "../ajax/demo.php?q=" + str, true);
+      xhttp.send();
+    }
+  </script>
   <script type="text/javascript">
     function sum() {
       var val1 = document.getElementById('unitPrice').value;
@@ -21,9 +33,7 @@ include "./../classes/invoiceDB.php";
       document.getElementById('total').value = sum;
     }
 
-    function sle(str){
-  }
-    
+    function sle(str) {}
   </script>
 </head>
 
@@ -64,26 +74,36 @@ include "./../classes/invoiceDB.php";
       $data = $drop->selecti();
       ?>
       Select the Product :
-      <select name="product" onchange="sle(this.value)">
+      <select name="product" onchange="run(this.value)">
+        <option value="">Select the product</option>
         <?php foreach ($data->fetchAll() as $row) : ?>
-          <option><?= $row["Pname"] ?></option>
-        <?php endforeach ?>
+          <option value="<?= $row["id"] ?>"><?= $row["Pname"] ?></option>
+        <?php endforeach; ?>
+
       </select>
 
 
+
+
+
+
       <div class="form-row">
-      <div class="form-group col-md-6">
-          <label for="inputName">UNIT PRICE :</label>
-          <input type="number" class="form-control" name="unitPrice" value="" id="unitPrice"  placeholder="1000">
-        </div>
-        
-        <div class="form-group col-md-6">
+
+        <div class="form-group col-md-6" id="demo"></div>
+
+        <div>
           <label for="inputname">QUANTITY :</label>
           <input type="number" class="form-control" name="quantity" onchange="sum()" id="quantity" placeholder="how much items of that product">
         </div>
       </div>
       <h4>Total:</h4>
       <input name="total" id="total" value="">
+
+
+      <hr>
+      <hr>
+      <h4>Grand Total</h4>
+      <input type="text">
 
     </div>
     <br><br><br>

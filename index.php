@@ -1,5 +1,5 @@
 <?php
-include "./include/header.php"
+include "./include/header.php";
 ?>
 
 
@@ -17,5 +17,6 @@ include "./include/header.php"
   <h1>MANAGE PRODUCTS  <a href="/pages/showProducts.php" class="btn btn-dark btn-lg" id="invoice"> Products</a></h1>
   <br><br>
   <h1 >GENERATE INVOICE<a   href="/pages/showAllInvoices.php" class="btn btn-warning btn-lg" id="invoice">INVOICE</a></h1>
+  <h1 >GENERATE INVOICE<a   href="new.php" class="btn btn-warning btn-lg" id="invoice">INVOICE</a></h1>
 </body>
 </html>
