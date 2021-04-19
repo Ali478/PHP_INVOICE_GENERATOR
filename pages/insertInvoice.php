@@ -74,12 +74,12 @@ include "./../classes/invoiceDB.php";
       $data = $drop->selecti();
       ?>
       Select the Product :
-      <select name="product" onchange="run(this.value)">
+      <select name="" onchange="run(this.value)">
         <option value="">Select the product</option>
         <?php foreach ($data->fetchAll() as $row) : ?>
           <option value="<?= $row["id"] ?>"><?= $row["Pname"] ?></option>
         <?php endforeach; ?>
-
+        
       </select>
 
 
@@ -108,6 +108,8 @@ include "./../classes/invoiceDB.php";
     </div>
     <br><br><br>
     <button type="submit" name="submit" class="btn btn-success btn-lg">submit</button>
+    <a href="./showAllInvoices.php" class="btn btn-primary btn-lg">Back Invoices</a>
+    
   </form>
 </body>
 

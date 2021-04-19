@@ -13,6 +13,20 @@ $aq = $data1->editmode($q);
 
 <head>
     <title>Update</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script type="text/javascript">
+    function sum() {
+      var val1 = document.getElementById('unitPrice').value;
+      var val2 = document.getElementById('quantity').value;
+      var sum = Number(val1) * Number(val2);
+      document.getElementById('total').value = sum;
+    }
+
+    function sle(str) {}
+  </script>
 </head>
 
 <body>
@@ -29,14 +43,20 @@ $aq = $data1->editmode($q);
             phone : <input type="text" name="phone" id="" value="<?php echo htmlspecialchars($row['phone']) ?>">
             <br></br>
 
-            Unit Price: <input type="text" name="unitPrice" id="" value="<?php echo htmlspecialchars($row['unitPrice']) ?>">
+            
+            Product Name: <input type="text" name="productName" id="" value="<?php echo htmlspecialchars($row['productName']) ?>">
             <br></br>
-            Quantity: <input type="text" name="quantity" id="" value="<?php echo htmlspecialchars($row['quantity']) ?>">
+
+            Unit Price: <input type="text" name="unitPrice" id="unitPrice"  value="<?php echo htmlspecialchars($row['unitPrice']) ?>">
             <br></br>
-            Total: <input type="text" name="total" id="" value="<?php echo htmlspecialchars($row['total']) ?>">
+            Quantity: <input type="text" name="quantity" id="quantity" onchange="sum()"  value="<?php echo htmlspecialchars($row['quantity']) ?>">
             <br></br>
-            <input type="submit" name="submit">
+            Total: <input type="text" name="total" id="total" value="<?php echo htmlspecialchars($row['total']) ?>">
+            <br></br>
+            <input type="submit" name="submit" class="btn btn-success  btn-lg">
         <?php endwhile; ?>
+    <a href="./showAllInvoices.php" class="btn btn-primary btn-lg">Back Invoices</a>
+
     </form>
 </body>
 

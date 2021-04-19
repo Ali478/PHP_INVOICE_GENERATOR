@@ -18,6 +18,9 @@ include "../classes/productDB.php";
     Availabe stock: <input type="text" name="availableStock" id="" placeholder="50">
     <br></br>
     <input type="submit" name="submit" class="btn btn-dark btn-lg">
+    <a href="./showProducts.php" class="btn btn-primary btn-lg">Back Products</a>
+    
+
 </body>
 </html>
 

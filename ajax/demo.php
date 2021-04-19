@@ -35,7 +35,9 @@ $conn = null;
     
 <?php foreach ($result->fetchAll() as $row) : ?>
     <div class="form-group col-md-6">
-          <label for="inputName">UNIT PRICE :</label>
+    <label for="inputName">Product Name :</label>
+          <input type="text" class="form-control" name="product"  value="<?= $row['Pname'] ?>">
+    <label for="inputName">UNIT PRICE :</label>
           <input type="number" class="form-control" name="unitPrice" value="<?= $row['unitPrice'] ?>" id="unitPrice">
         </div>
 

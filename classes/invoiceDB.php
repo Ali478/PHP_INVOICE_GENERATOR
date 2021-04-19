@@ -61,8 +61,8 @@ class invoice
         $result = new conn();
         $sql = "UPDATE invoices
             SET Cname='$_POST[Cname]', shopName='$_POST[shopName]', 
-            phone='$_POST[phone]', unitPrice='$_POST[unitPrice]', 
-            quantity='$_POST[quantity]'
+            phone='$_POST[phone]', unitPrice='$_POST[unitPrice]', address='$_POST[address]', 
+            quantity='$_POST[quantity]', total= '$_POST[total]'
                 WHERE invoiceID=$id ";
 
 
@@ -72,7 +72,8 @@ class invoice
 
     public function redirect()
     {
-        header("location:http://dev.project/pages/showAllInvoices.php");
+        header("location: ../pages/showAllInvoices.php");
+       
     }
 
 

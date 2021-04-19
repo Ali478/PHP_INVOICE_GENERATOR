@@ -34,7 +34,7 @@ class Product
 
     public function redirect()
     {
-        header("location:http://dev.project/pages/showProducts.php");
+        header("location: ../pages/showProducts.php");
     }
 
     public function insert()

@@ -23,6 +23,8 @@ $aq = $data->editmode($q);
             <br></br>
             <input type="submit" name="submit">
         <?php endwhile; ?>
+    <a href="./showProducts.php" class="btn btn-primary btn-lg">Back Products</a>
+
     </form>
 </body>
 </html>

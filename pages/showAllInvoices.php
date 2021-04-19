@@ -10,7 +10,7 @@ include "./../classes/invoiceDB.php";
 
 <body>
     <div id="container">
-        <h1 id="h1">Invoices</h1>
+        <h1 id="h1">INVOICES</h1>
         <a href="insertInvoice.php" class="btn btn-dark btn-lg" id="butt">
             Insert New invoice</a>
         <table class="table table-bordered table-condensed">

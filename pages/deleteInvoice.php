@@ -9,4 +9,3 @@ $data = new invoice();
 $data->deletevoice($q);
 
 $data->redirect();
-echo "done";
