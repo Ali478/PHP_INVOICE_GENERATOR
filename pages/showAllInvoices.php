@@ -1,5 +1,8 @@
 <?php
 
+
+
+
 include "./../include/header.php";
 include "./../classes/productDB.php";
 include "./../classes/invoiceDB.php";
@@ -55,7 +58,9 @@ include "./../classes/invoiceDB.php";
         </table>
 
         <br>
-        <a href="./../index.php" class="btn btn-primary btn-lg">Back to home page</a>
+        <a href="./dashboard.php" class="btn btn-primary btn-lg">Back to home page</a><br><br>
+  <h1 >logout  <a   href="/pages/logout.php" class="btn btn-warning btn-lg" id="invoice">logout</a></h1>
+
 
 </body>
 </div>

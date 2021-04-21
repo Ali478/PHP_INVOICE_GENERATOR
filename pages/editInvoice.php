@@ -4,6 +4,7 @@ include "./../classes/productDB.php";
 include "./../classes/invoiceDB.php";
 
 
+
 $q = $_REQUEST['id'];
 $data1 = new invoice();
 $aq = $data1->editmode($q);

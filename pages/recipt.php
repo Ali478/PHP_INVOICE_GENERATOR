@@ -1,5 +1,6 @@
 <?php
 
+
 require_once "../classes/invoiceDB.php";
 require_once "../classes/company.php";
 
