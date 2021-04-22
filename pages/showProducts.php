@@ -2,6 +2,8 @@
 
 include "../include/header.php";
 include "./../classes/productDB.php";
+include "../include/session.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +11,7 @@ include "./../classes/productDB.php";
 
 <body>
     <div id="container">
-        <h1 id="h1">PRODUCTS</h1>
+        <h1 id="h1">PRODUCTS</h1><br>
         <a href="insertProduct.php" class="btn btn-dark btn-lg" id="butt">
             Insert New Product</a>
         <table class="table table-bordered table-condensed">
@@ -33,7 +35,7 @@ include "./../classes/productDB.php";
                         <td><?php echo htmlspecialchars($row['availableStock']); ?></td>
                         <td>
 
-                            <a href="showProducts.php?action=delete&id=<?php echo htmlspecialchars($row['id']); ?>" class="btn btn-danger">Delete</a>
+                            <a href="deleteProduct.php?id=<?php echo htmlspecialchars($row['id']); ?>" class="btn btn-danger">Delete</a>
                             <a href="editProduct.php?id=<?php echo htmlspecialchars($row['id']); ?>" class="btn btn-dark">Edit</a>
                         </td>
                     </tr>
@@ -52,10 +54,4 @@ include "./../classes/productDB.php";
 </html>
 
 <?php
-if (isset($_GET['action']) && $_GET['action'] == 'delete') {
-    $id = (int)$_GET['id'];
-    if ($data->delete($id)) {
-        $data->redirect();
-    }
-}
 include  "./../include/footer.php"; 

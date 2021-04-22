@@ -2,6 +2,7 @@
 
 include "./../include/header.php";
 include "./../classes/productDB.php";
+include "../include/session.php";
 
 
 $q = $_REQUEST['id'];
@@ -23,6 +24,7 @@ $aq = $data->editmode($q);
             Available Stock: <input type="text" name="availableStock" id="" value="<?php echo htmlspecialchars($row['availableStock']) ?>">
             <br></br>
             <input type="submit" name="submit">
+            <input type="submit" name="submit" class="btn btn-success">
         <?php endwhile; ?>
     <a href="./showProducts.php" class="btn btn-primary btn-lg">Back Products</a>
 

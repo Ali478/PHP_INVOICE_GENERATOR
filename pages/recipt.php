@@ -84,14 +84,22 @@ $q = $_REQUEST['id'];
         <td><?php echo htmlspecialchars($row['unitPrice']) ?></td>
         <td ><?php echo htmlspecialchars($row['total']) ?></td>
       </tr>
-      
+
+      <tr>
+        <th>2</th>
+        <td><?php echo htmlspecialchars($row['productName2']) ?></td>
+        <td><?php echo htmlspecialchars($row['quantity2']) ?></td>
+        <td><?php echo htmlspecialchars($row['unitPrice2']) ?></td>
+        <td ><?php echo htmlspecialchars($row['total2']) ?></td>
+      </tr>
+     
 
       <tr>
           <td>--></td>
           <td>Grand Total</td>
           <td></td>
           <td></td>
-          <td id="val"><?php echo htmlspecialchars($row['total']) ?></td>
+          <td id="val"><?php echo htmlspecialchars($row['total']+$row['total2']) ?></td>
       </tr>
       <?php } ?>
     </tbody>

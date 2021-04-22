@@ -2,7 +2,14 @@
 include "./../include/header.php";
 include "./../classes/productDB.php";
 include "./../classes/invoiceDB.php";
+include "./../include/session.php";
 
+if (isset($_POST['submit'])) {
+  $q = new invoice();
+  $q->insert();
+  $q->redirect();
+  echo "<h1>Inserted</h1>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +31,17 @@ include "./../classes/invoiceDB.php";
       xhttp.open("get", "../ajax/demo.php?q=" + str, true);
       xhttp.send();
     }
+
+    function run2(str) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("demo2").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("get", "../ajax/add.php?q=" + str, true);
+      xhttp.send();
+    }
   </script>
   <script type="text/javascript">
     function sum() {
@@ -33,7 +51,13 @@ include "./../classes/invoiceDB.php";
       document.getElementById('total').value = sum;
     }
 
-    function sle(str) {}
+    function pro2() {
+      var val1 = document.getElementById('unitPrice2').value;
+      var val2 = document.getElementById('quantity2').value;
+      var sum = Number(val1) * Number(val2);
+      document.getElementById('totaly').value = sum;
+
+    }
   </script>
 </head>
 
@@ -79,7 +103,7 @@ include "./../classes/invoiceDB.php";
         <?php foreach ($data->fetchAll() as $row) : ?>
           <option value="<?= $row["id"] ?>"><?= $row["Pname"] ?></option>
         <?php endforeach; ?>
-        
+
       </select>
 
 
@@ -100,26 +124,57 @@ include "./../classes/invoiceDB.php";
       <input name="total" id="total" value="">
 
 
-      <hr>
-      <hr>
-      <h4>Grand Total</h4>
-      <input type="text">
+      <div class="form-col">
+        <hr>
+        <hr>
+        <?php
 
-    </div>
-    <br><br><br>
-    <button type="submit" name="submit" class="btn btn-success btn-lg">submit</button>
-    <a href="./showAllInvoices.php" class="btn btn-primary btn-lg">Back Invoices</a>
-    
+        $data = $drop->selecti();
+        ?>
+        Select the Product :
+        <select name="" onchange="run2(this.value)">
+          <option value="">Select the product</option>
+          <?php foreach ($data->fetchAll() as $row) : ?>
+            <option value="<?= $row["id"] ?>"><?= $row["Pname"] ?></option>
+          <?php endforeach; ?>
+
+        </select>
+
+
+
+
+
+
+        <div class="form-row">
+
+          <div class="form-group col-md-6" id="demo2"></div>
+
+          <div>
+            <label for="inputname">QUANTITY :</label>
+            <input type="number" class="form-control" name="quantity2" onchange="pro2()" id="quantity2" placeholder="how much items of that product">
+          </div>
+        </div>
+        <h4>Total:</h4>
+        <input name="totaly" id="totaly" onchange="gtotal()" value="">
+
+
+        <hr>
+        <hr>
+
+
+
+      </div>
+      <br><br>
+      <button type="submit" name="submit" class="btn btn-success btn-lg">submit</button> <br> <br>
   </form>
+
+
+  <a href="./showAllInvoices.php" class="btn btn-primary btn-lg">Back to home page</a><br><br>
 </body>
 
 </html>
 
 <?php
-if (isset($_POST['submit'])) {
-  $qw = new invoice();
-  $qw->insert();
-  $qw->redirect();
-}
+
 echo "<br><br><br><br><br><br>";
 include  "./../include/footer.php";

@@ -11,9 +11,10 @@ class invoice
 
         $result = new conn();
         $sql = "INSERT INTO invoices (Cname, shopName, address, phone, 
-        productName, unitPrice, quantity, total)
+        productName, unitPrice, quantity, total, productName2, unitPrice2, quantity2, total2)
             VALUES ('$_POST[Cname]', '$_POST[shopName]', '$_POST[adress]',
-             '$_POST[phone]', '$_POST[product]', '$_POST[unitPrice]', '$_POST[quantity]', '$_POST[total]')";
+             '$_POST[phone]', '$_POST[product]', '$_POST[unitPrice]', '$_POST[quantity]', '$_POST[total]', 
+             '$_POST[product2]', '$_POST[unitPrice2]', '$_POST[quantity2]', '$_POST[totaly]')";
         $abc = $result->connection($sql);
         return $abc;
     }
@@ -61,9 +62,11 @@ class invoice
         $result = new conn();
         $sql = "UPDATE invoices
             SET Cname='$_POST[Cname]', shopName='$_POST[shopName]', 
-            phone='$_POST[phone]', unitPrice='$_POST[unitPrice]', address='$_POST[address]', 
-            quantity='$_POST[quantity]', total= '$_POST[total]'
-                WHERE invoiceID=$id ";
+            phone='$_POST[phone]', unitPrice='$_POST[unitPrice]',  address='$_POST[address]', 
+            productName='$_POST[productName]', quantity='$_POST[quantity]', total= '$_POST[total]',
+            productName2='$_POST[productName2]', quantity2='$_POST[quantity2]', unitPrice2='$_POST[unitPrice2]', total2= '$_POST[total2]'
+
+                WHERE invoiceID='$id' ";
 
 
         $abc = $result->connection($sql);
@@ -72,8 +75,9 @@ class invoice
 
     public function redirect()
     {
+        
         header("location: ../pages/showAllInvoices.php");
-       
+        
     }
 
 

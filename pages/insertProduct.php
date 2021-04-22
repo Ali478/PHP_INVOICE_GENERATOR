@@ -2,6 +2,8 @@
 
 include "../include/header.php";
 include "../classes/productDB.php";
+include "../include/session.php";
+
 ?>
 
 <!DOCTYPE html>

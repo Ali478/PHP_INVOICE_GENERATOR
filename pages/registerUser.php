@@ -2,6 +2,8 @@
 
 include "../classes/productDB.php";
 include "../classes/loginDB.php";
+include "../include/session.php";
+
 
 if (isset($_POST['submit'])) {
     $data = new login();

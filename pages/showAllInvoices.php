@@ -6,6 +6,8 @@
 include "./../include/header.php";
 include "./../classes/productDB.php";
 include "./../classes/invoiceDB.php";
+include "../include/session.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +16,7 @@ include "./../classes/invoiceDB.php";
 <body>
     <div id="container">
         <h1 id="h1">INVOICES</h1>
+        <br>
         <a href="insertInvoice.php" class="btn btn-dark btn-lg" id="butt">
             Insert New invoice</a>
         <table class="table table-bordered table-condensed">
@@ -23,10 +26,14 @@ include "./../classes/invoiceDB.php";
                     <th>SHOP NAME</th>
                     <th>ADRESS</th>
                     <th>Phone </th>
-                    <th>Product </th>
-                    <th>UNIT PRICE </th>
-                    <th>QUANTITY </th>
-                    <th>Total</th>
+                    <th>Product-1 </th>
+                    <th>UNIT PRICE-1 </th>
+                    <th>QUANTITY-1 </th>
+                    <th>Total-1</th>
+                    <th>Product-2 </th>
+                    <th>UNIT PRICE -2 </th>
+                    <th>QUANTITY-2 </th>
+                    <th>Total-2</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -45,6 +52,10 @@ include "./../classes/invoiceDB.php";
                         <td><?php echo htmlspecialchars($row['unitPrice']); ?></td>
                         <td><?php echo htmlspecialchars($row['quantity']); ?></td>
                         <td><?php echo htmlspecialchars($row['total']); ?></td>
+                        <td><?php echo htmlspecialchars($row['productName2']); ?></td>
+                        <td><?php echo htmlspecialchars($row['unitPrice2']); ?></td>
+                        <td><?php echo htmlspecialchars($row['quantity2']); ?></td>
+                        <td><?php echo htmlspecialchars($row['total2']); ?></td>
                         <td>
 
                             <a href="deleteInvoice.php?id=<?php echo htmlspecialchars($row['invoiceID']); ?>" class="btn btn-danger">Delete</a>

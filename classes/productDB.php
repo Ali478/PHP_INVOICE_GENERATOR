@@ -48,9 +48,9 @@ class Product
     }
 
     public function delete($id)
-    {
+    {   
         $result = new conn();
-        $sql = "DELETE FROM products WHERE id= $id ";
+        $sql = "DELETE FROM products WHERE id = '$id' ";
         $abc = $result->connection($sql);
         return $abc;
     }

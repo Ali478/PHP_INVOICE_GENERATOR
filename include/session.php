@@ -1,5 +1,5 @@
 <?php
-
+include "./include/header.php";
 require_once "../classes/loginDB.php";
 session_start();
 $data = new login;
@@ -7,7 +7,7 @@ $row = $data->show(($_SESSION["user_login"]));
 $displayName = ucwords($row["Name"]);
 
 if (isset($_SESSION["user_login"])) {
-    if (time() - $_SESSION["login_time_stamp"] > 600) {
+    if (time() - $_SESSION["login_time_stamp"] > 6000) {
         session_unset();
         session_destroy();
         header("Location:login.php");
@@ -18,7 +18,9 @@ if (isset($_SESSION["user_login"])) {
 
 
 if (isset($_SESSION["user_login"])) {
-    echo "<h3><i>welome $displayName</i></h3> ";
+
+    echo "<h3><i>$displayName</i></h3> ";
+    
 } else {
     echo "LOGIN AGAIN";
 
