@@ -6,15 +6,70 @@ class invoice
 
 
 
-    public function insert()    
+    public function insert($val)
     {
+        
+
+        if (isset($_POST['submit'])) {
+
+            $pro = array();
+            for ($i = 1; $i <= $val; $i++) {
+
+                $pro['product' . $i] =  $_POST['productName' . $i];
+            }
+            foreach ($pro as $x => $x_value) {
+
+                $valu[] =  $x_value;
+              
+            }
+
+
+            
+            $unit = array();
+            for ($i = 1; $i <= $val; $i++) {
+
+                $unit['unitprice' . $i] =  $_POST['unitPrice' . $i];
+            }
+               
+            foreach ($unit as $x => $x_value) {
+                $uni[] =  $x_value;
+            }
+
+            
+            $quantity = array();
+
+            for ($i = 1; $i <= $val; $i++) {
+
+                $quantity['quantity' . $i] =  $_POST['quantity' . $i];
+            }  
+            foreach ($quantity as $x => $x_value) {
+                $quan[] =  $x_value;
+            }
+
+
+             $total = array();
+            for ($i = 1; $i <= $val; $i++) {
+
+                $total['total' . $i] =  ($_POST['quantity'.$i] * $_POST['unitPrice'.$i]);
+            }
+
+            foreach ($total as $x => $x_value) {
+                $tot[] =  $x_value;
+            }
+        }
+
+        $val = implode(",", $valu);
+        $unit = implode(",", $uni);
+        $quan = implode(",", $quan);
+        $total = implode(",", $tot);
+
+        
 
         $result = new conn();
         $sql = "INSERT INTO invoices (Cname, shopName, address, phone, 
-        productName, unitPrice, quantity, total, productName2, unitPrice2, quantity2, total2)
+        productName, unitPrice, quantity, total)
             VALUES ('$_POST[Cname]', '$_POST[shopName]', '$_POST[adress]',
-             '$_POST[phone]', '$_POST[product]', '$_POST[unitPrice]', '$_POST[quantity]', '$_POST[total]', 
-             '$_POST[product2]', '$_POST[unitPrice2]', '$_POST[quantity2]', '$_POST[totaly]')";
+             '$_POST[phone]', '$val' , '$unit' , '$quan', '$total')";
         $abc = $result->connection($sql);
         return $abc;
     }
@@ -75,9 +130,8 @@ class invoice
 
     public function redirect()
     {
-        
+
         header("location: ../pages/showAllInvoices.php");
-        
     }
 
 

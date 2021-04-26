@@ -5,8 +5,9 @@ include "./../classes/invoiceDB.php";
 include "./../include/session.php";
 
 if (isset($_POST['submit'])) {
+  $val = $_POST['select'];
   $q = new invoice();
-  $q->insert();
+  $q->insert($val);
   $q->redirect();
   echo "<h1>Inserted</h1>";
 }
@@ -18,46 +19,57 @@ if (isset($_POST['submit'])) {
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <script>
-    function run(str) {
 
-
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("demo").innerHTML = this.responseText;
-        }
-      };
-      xhttp.open("get", "../ajax/demo.php?q=" + str, true);
-      xhttp.send();
-    }
-
-    function run2(str) {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("demo2").innerHTML = this.responseText;
-        }
-      };
-      xhttp.open("get", "../ajax/add.php?q=" + str, true);
-      xhttp.send();
-    }
-  </script>
   <script type="text/javascript">
     function sum() {
-      var val1 = document.getElementById('unitPrice').value;
-      var val2 = document.getElementById('quantity').value;
+      var val1 = document.getElementById('unitPrice1').value;
+      var val2 = document.getElementById('quantity1').value;
       var sum = Number(val1) * Number(val2);
-      document.getElementById('total').value = sum;
+      document.getElementById('total1').value = sum;
     }
+  </script>
 
-    function pro2() {
-      var val1 = document.getElementById('unitPrice2').value;
-      var val2 = document.getElementById('quantity2').value;
-      var sum = Number(val1) * Number(val2);
-      document.getElementById('totaly').value = sum;
+  <script>
+    function clik(str) {
 
-    }
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("data").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("get", "../ajax/ajax.php?q=" + str, true);
+      xhttp.send();
+
+    };
+
+
+    <?php
+    for ($i = 1; $i <= 100; $i++) { ?>
+
+      function produ<?php echo $i; ?>(str) {
+        var nu = <?php echo $i; ?>;
+
+
+
+        $.ajax({
+          type: "GET",
+          url: "../ajax/ajax2.php",
+          data: {
+            q: str,
+            a: nu
+          },
+          success: function(data) {
+            $("#product<?php echo $i; ?>").html(data) = this.responseText;
+          }
+
+        });
+
+
+      }
+
+    <?Php } ?>
   </script>
 </head>
 
@@ -90,22 +102,28 @@ if (isset($_POST['submit'])) {
       </div>
     </div>
 
+
     <div class="form-col">
       <hr>
       <hr>
-      <?php
-      $drop = new product();
-      $data = $drop->selecti();
-      ?>
-      Select the Product :
-      <select name="" onchange="run(this.value)">
-        <option value="">Select the product</option>
-        <?php foreach ($data->fetchAll() as $row) : ?>
-          <option value="<?= $row["id"] ?>"><?= $row["Pname"] ?></option>
-        <?php endforeach; ?>
 
-      </select>
+      <h2>How Many products you want to add</h2>
 
+      <input type="text" name="select" id="select" onchange="clik(this.value)">
+      <!-- <select name="" id="select" onchange="clik(this.value)">
+        <option value="">How Many products you want to add</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select> -->
+      <hr>
+      <hr>
 
 
 
@@ -113,49 +131,7 @@ if (isset($_POST['submit'])) {
 
       <div class="form-row">
 
-        <div class="form-group col-md-6" id="demo"></div>
-
-        <div>
-          <label for="inputname">QUANTITY :</label>
-          <input type="number" class="form-control" name="quantity" onchange="sum()" id="quantity" placeholder="how much items of that product">
-        </div>
-      </div>
-      <h4>Total:</h4>
-      <input name="total" id="total" value="">
-
-
-      <div class="form-col">
-        <hr>
-        <hr>
-        <?php
-
-        $data = $drop->selecti();
-        ?>
-        Select the Product :
-        <select name="" onchange="run2(this.value)">
-          <option value="">Select the product</option>
-          <?php foreach ($data->fetchAll() as $row) : ?>
-            <option value="<?= $row["id"] ?>"><?= $row["Pname"] ?></option>
-          <?php endforeach; ?>
-
-        </select>
-
-
-
-
-
-
-        <div class="form-row">
-
-          <div class="form-group col-md-6" id="demo2"></div>
-
-          <div>
-            <label for="inputname">QUANTITY :</label>
-            <input type="number" class="form-control" name="quantity2" onchange="pro2()" id="quantity2" placeholder="how much items of that product">
-          </div>
-        </div>
-        <h4>Total:</h4>
-        <input name="totaly" id="totaly" onchange="gtotal()" value="">
+        <div class="form-group col-md-6" id="data"></div>
 
 
         <hr>

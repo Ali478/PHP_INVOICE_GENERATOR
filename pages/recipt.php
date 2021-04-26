@@ -64,9 +64,9 @@ $q = $_REQUEST['id'];
 
 
 
-
+                  
       </tr>
-      
+     
 
       <tr>
         <th scope="col">No.</th>
@@ -77,33 +77,38 @@ $q = $_REQUEST['id'];
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th>1</th>
-        <td><?php echo htmlspecialchars($row['productName']) ?></td>
-        <td><?php echo htmlspecialchars($row['quantity']) ?></td>
-        <td><?php echo htmlspecialchars($row['unitPrice']) ?></td>
-        <td ><?php echo htmlspecialchars($row['total']) ?></td>
-      </tr>
 
+                  
       <tr>
-        <th>2</th>
-        <td><?php echo htmlspecialchars($row['productName2']) ?></td>
-        <td><?php echo htmlspecialchars($row['quantity2']) ?></td>
-        <td><?php echo htmlspecialchars($row['unitPrice2']) ?></td>
-        <td ><?php echo htmlspecialchars($row['total2']) ?></td>
+      <?php
+        $pro= explode("," , $row['productName']);
+        $quan= explode(",", $row['quantity']);
+        $unit= explode(",", $row['unitPrice']);
+        $total= explode(",", $row['total']);
+        
+              foreach($pro as $key=>$value){ 
+              
+         ?>
+        <th><?php echo $key+1 ?></th>
+        <td><?php echo $pro[$key] ?></td>
+        <td><?php echo $quan[$key] ?></td>
+        <td><?php echo $unit[$key] ?></td>
+        <td><?php echo $total[$key]?></td>
+        
+
       </tr>
-     
+      <?php  } ?>
 
       <tr>
           <td>--></td>
-          <td>Grand Total</td>
+          <td><b>Grand Total</b></td>
           <td></td>
           <td></td>
-          <td id="val"><?php echo htmlspecialchars($row['total']+$row['total2']) ?></td>
+          <td id="val"><?php echo array_sum($total);  ?></td>
       </tr>
-      <?php } ?>
+      
     </tbody>
-
+    <?php } ?>
     
   </table>
 

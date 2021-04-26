@@ -14,26 +14,24 @@ include "../include/session.php";
 <html>
 
 <body>
-    <div id="container">
+    <div id="container" >
         <h1 id="h1">INVOICES</h1>
         <br>
         <a href="insertInvoice.php" class="btn btn-dark btn-lg" id="butt">
             Insert New invoice</a>
-        <table class="table table-bordered table-condensed">
+        <table class="table table-striped table-dark">
+
             <thead>
+
                 <tr>
                     <th>NAME</th>
                     <th>SHOP NAME</th>
                     <th>ADRESS</th>
                     <th>Phone </th>
-                    <th>Product-1 </th>
-                    <th>UNIT PRICE-1 </th>
-                    <th>QUANTITY-1 </th>
-                    <th>Total-1</th>
-                    <th>Product-2 </th>
-                    <th>UNIT PRICE -2 </th>
-                    <th>QUANTITY-2 </th>
-                    <th>Total-2</th>
+                    <th>Product (unit-price) </th>
+                    <th>QUANTITY </th>
+                    <th>Total</th>
+                    <th>Grand Total</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -48,18 +46,67 @@ include "../include/session.php";
                         <td><?php echo htmlspecialchars($row['shopName']); ?></td>
                         <td><?php echo htmlspecialchars($row['address']); ?></td>
                         <td><?php echo htmlspecialchars($row['phone']); ?></td>
-                        <td><?php echo htmlspecialchars($row['productName']); ?></td>
-                        <td><?php echo htmlspecialchars($row['unitPrice']); ?></td>
-                        <td><?php echo htmlspecialchars($row['quantity']); ?></td>
-                        <td><?php echo htmlspecialchars($row['total']); ?></td>
-                        <td><?php echo htmlspecialchars($row['productName2']); ?></td>
-                        <td><?php echo htmlspecialchars($row['unitPrice2']); ?></td>
-                        <td><?php echo htmlspecialchars($row['quantity2']); ?></td>
-                        <td><?php echo htmlspecialchars($row['total2']); ?></td>
+
+                        <td><ol>  <?php
+                                $pro = explode(",", $row['productName']);
+                             
+                                $unit = explode(",", $row['unitPrice']);
+                                foreach ($pro as $key => $value) {
+
+                                ?>
+
+                                 
+                                <li>
+                                <?php echo $pro[$key]  ?> (Rs <?php echo $unit[$key] ?> )  <br>
+                                </li>
+                                  
+                                <?php } ?> </ol></td>
+
+                        <td><ol> 
+                        <?php
+                                $pro = explode(",", $row['productName']);
+                                $quan = explode(",", $row['quantity']);
+
+                                foreach ($pro as $key => $value) {
+
+                                ?>
+
+                                 
+                                <li>
+                               (<?php echo $quan[$key]  ?>) <br>
+                                </li>
+                              
+                                <?php } ?>
+                        
+                                </ol>   </td>
+
+
+                        <td>  <ol>
+                        <?php
+                                $total= explode(",", $row['total']);
+
+
+                                foreach ($pro as $key => $value) {
+
+                                ?>
+
+                                
+                                <li> 
+                                (Rs:<?php echo $total[$key]  ?> )<br>
+                                </li>
+                                 
+                                <?php } ?>
+                        
+                                </ol> </td>
+
+                        <td id="val">Rs: <?php echo array_sum($total);  ?></td>
+
+
                         <td>
 
                             <a href="deleteInvoice.php?id=<?php echo htmlspecialchars($row['invoiceID']); ?>" class="btn btn-danger">Delete</a>
-                            <a href="editInvoice.php?id=<?php echo htmlspecialchars($row['invoiceID']); ?>" class="btn btn-dark">Edit</a>
+                            <!--       <a href="editInvoice.php?id=<?php #echo htmlspecialchars($row['invoiceID']); 
+                                                                    ?>" class="btn btn-dark">Edit</a> -->
                             <a href="recipt.php?id=<?php echo htmlspecialchars($row['invoiceID']); ?>" class="btn btn-success">Print</a>
                         </td>
                     </tr>
@@ -70,7 +117,7 @@ include "../include/session.php";
 
         <br>
         <a href="./dashboard.php" class="btn btn-primary btn-lg">Back to home page</a><br><br>
-  <h1 >logout  <a   href="/pages/logout.php" class="btn btn-warning btn-lg" id="invoice">logout</a></h1>
+        <h1>logout <a href="/pages/logout.php" class="btn btn-warning btn-lg" id="invoice">logout</a></h1>
 
 
 </body>
